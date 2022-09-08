@@ -3,7 +3,8 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
-        <app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement"></app-server-element>
+      <button (click)="test2()" class="btn btn-primary">Change 2</button>
+        <app-server-element [name] = "serverElement.name"  (modifyObjTitle)="modifyObjTitle($event)" *ngFor="let serverElement of serverElements, index as i" [nr]="i" [srvElement]="serverElement"></app-server-element>
     </div>
   </div>
 </div>

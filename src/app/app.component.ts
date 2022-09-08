@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { emitType } from './server-element/server-element.component';
 
 type T = {
   type: string;
@@ -27,5 +28,12 @@ export class AppComponent {
       name: serverData.serverName,
       content: serverData.serverContent,
     });
+  }
+
+  modifyObjTitle(data: emitType) {
+    this.serverElements[data.index].name = data.name;
+  }
+  test2() {
+    this.serverElements[0].name = 'aaaa';
   }
 }

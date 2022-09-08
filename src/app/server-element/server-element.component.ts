@@ -1,4 +1,13 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -6,11 +15,35 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./server-element.component.css'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class ServerElementComponent implements OnInit {
+export class ServerElementComponent implements OnInit, OnChanges {
   @Input('srvElement')
   element: { type: string; name: string; content: string };
 
-  constructor() {}
+  @Input()
+  nr: number;
 
-  ngOnInit(): void {}
+  @Output()
+  modifyObjTitle = new EventEmitter<emitType>();
+  @Input()
+  name: string;
+
+  constructor() {
+    console.log('constructor called!');
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes, 'fck');
+  }
+
+  ngOnInit(): void {
+    console.log('ngOnInit called!');
+  }
+  btnChangeTitle() {
+    this.modifyObjTitle.emit({ name: `${this.nr}`, index: this.nr });
+  }
 }
+
+export type emitType = {
+  name: string;
+  index: number;
+};
